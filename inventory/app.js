@@ -37,12 +37,12 @@ function requestHandler(req, res) {
 }
 
 let defaultMessage = "Internal Server Error"
-const updateItemDB = function(errorMessage, resData, res){
-    if (errorMessage == undefined){
-        errorMessage=defaultMessage
+const updateItemDB = function (errorMessage, resData, res) {
+    if (errorMessage == undefined) {
+        errorMessage = defaultMessage
     }
-    if (resData == undefined){
-        resData=itemsDB
+    if (resData == undefined) {
+        resData = itemsDB
     }
     writeFile(itemsDbPath, JSON.stringify(itemsDB), (err) => {
         if (err) {
@@ -56,7 +56,7 @@ const updateItemDB = function(errorMessage, resData, res){
     });
 }
 
-const getData = function(req){
+const getData = function (req) {
     const body = []
     req.on('data', (chunk) => {
         body.push(chunk)
@@ -65,7 +65,7 @@ const getData = function(req){
 }
 
 function getAllItems(req, res) {
-        res.end(JSON.stringify(itemsDB))
+    res.end(JSON.stringify(itemsDB))
 }
 
 function getOneItem(req, res) {
@@ -153,7 +153,7 @@ function deleteItem(req, res) {
             }
             itemsDB.splice(itemIndex, 1)
             updateItemDB(undefined, "item deleted", res)
-            res.end(JSON.stringify({message:"item deleted succesfully"}))
+            res.end(JSON.stringify({ message: "item deleted succesfully" }))
 
 
 
